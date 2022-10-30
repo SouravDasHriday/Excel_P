@@ -1,0 +1,628 @@
+Sub Macro1_test()
+'
+' Macro1_test Macro
+'
+
+'
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "test"
+    Range("A2").Select
+End Sub
+
+Sub MultiFindNReplace()
+
+Dim rng As Range
+Dim InputRng As Range, ReplaceRng As Range
+xTitleId = "Excel in A Nutshell"
+Set InputRng = Application.Selection
+Set InputRng = Application.InputBox("Area of Replace ", xTitleId, InputRng.Address, Type:=8)
+Set ReplaceRng = Application.InputBox("What to change by whom :", xTitleId, Type:=8)
+Application.ScreenUpdating = False
+For Each rng In ReplaceRng.Columns(1).Cells
+    InputRng.Replace What:=rng.Value, Replacement:=rng.Offset(0, 1).Value
+Next
+Application.ScreenUpdating = True
+End Sub
+Sub Slatanypoint()
+Dim a As Integer
+a = InputBox("Put Sl", "Excel in A Nutshell", "5/20/30/50 etc. ")
+For a = 1 To a
+ActiveCell.Value = a
+ActiveCell.Offset(1, 0).Activate
+Next a
+Last: Exit Sub
+End Sub
+
+
+Public Sub CountWorkSheets()
+MsgBox "The total number sheets of this workbook: " & Application.Sheets.Count
+End Sub
+Sub SortWorkBook()
+Dim xResult As VbMsgBoxResult
+xTitleId = "Excel in A Nutshell"
+xResult = MsgBox("Sort Sheets in Ascending Order?" & Chr(10) & "Clicking No will sort in Descending Order", vbYesNoCancel + vbQuestion + vbDefaultButton1, xTitleId)
+For i = 1 To Application.Sheets.Count
+    For j = 1 To Application.Sheets.Count - 1
+        If xResult = vbYes Then
+            If UCase$(Application.Sheets(j).Name) > UCase$(Application.Sheets(j + 1).Name) Then
+                Sheets(j).Move After:=Sheets(j + 1)
+            End If
+            ElseIf xResult = vbNo Then
+                If UCase$(Application.Sheets(j).Name) < UCase$(Application.Sheets(j + 1).Name) Then
+                    Application.Sheets(j).Move After:=Application.Sheets(j + 1)
+            End If
+        End If
+    Next
+Next
+End Sub
+
+Sub Sh_Rename()
+Dim a As Integer
+Dim myarray() As String
+
+Dim i As Integer
+Dim Lrow As Integer
+Lrow = Range("A1").End(xlDown).Row
+a = Application.Worksheets.Count
+ReDim myarray(1 To Lrow)
+For i = 1 To UBound(myarray)
+myarray(i) = Range("A" & i).Value
+Next i
+For i = 1 To a
+Sheets(i).Name = myarray(i)
+Next i
+MsgBox "Let's check the Rename Sheets"
+End Sub
+Sub List_Sheet1()
+Dim ws As Worksheet
+Dim x As Integer, p As Integer, q As String
+     x = 1
+ For Each ws In Worksheets
+     Sheets("Sheet1").Cells(x, 1) = ws.Name
+     x = x + 1
+Next ws
+p = WorksheetFunction.CountA(Range("a1:a20"))
+q = ActiveWorkbook.Name
+Range("b1") = "Total Sheets: " & p
+Range("b2") = "Excel File Name: " & q
+Range("A1:B500").Select
+    Selection.Columns.AutoFit
+MsgBox ("Total sheets: ") & p & " ;Excel File Name: " & q
+End Sub
+
+Sub new_5_sheet_add()
+Worksheets.Add , Sheets(Sheets.Count), Count:=5
+End Sub
+
+
+Sub new_10_sheet_add()
+Worksheets.Add , Sheets(Sheets.Count), Count:=10
+End Sub
+
+Sub new_20_sheet_add()
+Worksheets.Add , Sheets(Sheets.Count), Count:=20
+End Sub
+
+
+Sub new_50_sheet_add()
+Worksheets.Add , Sheets(Sheets.Count), Count:=50
+End Sub
+
+
+Sub Add_SL_Row()
+Dim a As Integer
+a = InputBox("Put Sl", "Excel in A Nutshell", "5/20/30/50 etc. ")
+For a = 1 To a
+ActiveCell.Value = a
+ActiveCell.Offset(0, 1).Activate
+Next a
+Last: Exit Sub
+End Sub
+
+
+Sub At_Sheet1()
+Dim ws As Worksheet
+Dim x As Integer, p As Integer, q As String
+     x = 1
+ For Each ws In Worksheets
+     ActiveSheet.Cells(x, 1) = ws.Name
+     x = x + 1
+Next ws
+p = WorksheetFunction.CountA(Range("a1:a20"))
+q = ActiveWorkbook.Name
+Range("b1") = "Total Sheets: " & p
+Range("b2") = "Excel File Name: " & q
+Range("A1:B500").Select
+    Selection.Columns.AutoFit
+MsgBox ("Total sheets: ") & p & " ;Excel File Name: " & q
+End Sub
+
+
+Sub Adding_1_Row()
+ActiveCell.EntireRow.Insert
+End Sub
+Sub Adding_1_Column()
+ActiveCell.EntireColumn.Insert
+End Sub
+
+
+Sub Adding_5_Rows()
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+End Sub
+
+
+Sub Adding_10_Rows()
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+End Sub
+
+
+Sub Adding_20_Rows()
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+ActiveCell.EntireRow.Insert
+End Sub
+
+
+Sub Adding_5_Columns()
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+End Sub
+
+
+Sub Adding_10_Columns()
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+End Sub
+
+
+Sub Adding_20_Columns()
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+ActiveCell.EntireColumn.Insert
+End Sub
+
+
+Sub Insert_Blank_Rows()
+    Selection.End(xlDown).Select
+    Do Until ActiveCell.Row = 1
+         ActiveCell.EntireRow.Insert Shift:=xlDown
+         ActiveCell.Offset(-1, 0).Select
+    Loop
+End Sub
+
+
+Sub Insert_Blank_Rows_2()
+    Selection.End(xlDown).Select
+    Do Until ActiveCell.Row = 2
+         ActiveCell.EntireRow.Insert Shift:=xlDown
+         ActiveCell.Offset(-2, 0).Select
+    Loop
+End Sub
+
+
+Sub Insert_Blank_Rows_3()
+    Selection.End(xlDown).Select
+    Do Until ActiveCell.Row = 3
+         ActiveCell.EntireRow.Insert Shift:=xlDown
+         ActiveCell.Offset(-3, 0).Select
+    Loop
+End Sub
+
+
+Sub Insert_Blank_Rows_5()
+    Selection.End(xlDown).Select
+    Do Until ActiveCell.Row = 5
+         ActiveCell.EntireRow.Insert Shift:=xlDown
+         ActiveCell.Offset(-5, 0).Select
+    Loop
+End Sub
+
+
+Sub CopyFromWorksheets()
+    Dim wrk As Workbook 'Workbook object - Always good to work with object variables
+    Dim sht As Worksheet 'Object for handling worksheets in loop
+    Dim trg As Worksheet 'Master Worksheet
+    Dim rng As Range 'Range object
+    Dim colCount As Integer 'Column count in tables in the worksheets
+     
+    Set wrk = ActiveWorkbook 'Working in active workbook
+     
+    For Each sht In wrk.Worksheets
+        If sht.Name = "Master" Then
+            MsgBox "There is a worksheet called as 'Master'." & vbCrLf & _
+            "Please remove or rename this worksheet since 'Master' would be" & _
+            "the name of the result worksheet of this process.", vbOKOnly + vbExclamation, "Error"
+            Exit Sub
+        End If
+    Next sht
+     
+     'We don't want screen updating
+    Application.ScreenUpdating = False
+     
+     'Add new worksheet as the last worksheet
+    Set trg = wrk.Worksheets.Add(After:=wrk.Worksheets(wrk.Worksheets.Count))
+     'Rename the new worksheet
+    trg.Name = "Master"
+     'Get column headers from the first worksheet
+     'Column count first
+    Set sht = wrk.Worksheets(1)
+    colCount = sht.Cells(1, 255).End(xlToLeft).Column
+     'Now retrieve headers, no copy&paste needed
+    With trg.Cells(1, 1).Resize(1, colCount)
+        .Value = sht.Cells(1, 1).Resize(1, colCount).Value
+         'Set font as bold
+        .Font.Bold = True
+    End With
+     
+     'We can start loop
+    For Each sht In wrk.Worksheets
+         'If worksheet in loop is the last one, stop execution (it is Master worksheet)
+        If sht.Index = wrk.Worksheets.Count Then
+            Exit For
+        End If
+         'Data range in worksheet - starts from second row as first rows are the header rows in all worksheets
+        Set rng = sht.Range(sht.Cells(2, 1), sht.Cells(65536, 1).End(xlUp).Resize(, colCount))
+         'Put data into the Master worksheet
+        trg.Cells(65536, 1).End(xlUp).Offset(1).Resize(rng.Rows.Count, rng.Columns.Count).Value = rng.Value
+    Next sht
+     'Fit the columns in Master worksheet
+    trg.Columns.AutoFit
+     
+     'Screen updating should be activated
+    Application.ScreenUpdating = True
+End Sub
+
+
+Sub SplitEachWorksheet()
+Dim FPath As String
+FPath = Application.ActiveWorkbook.Path
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+For Each ws In ThisWorkbook.Sheets
+    ws.Copy
+    Application.ActiveWorkbook.SaveAs Filename:=FPath & "\" & ws.Name & ".xlsx"
+    Application.ActiveWorkbook.Close False
+Next
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+End Sub
+
+
+
+
+Function SpellNumberEDP(ByVal MyNumber, Optional MyCurrency As String = "")
+        Dim Taka, Poisa, Temp
+        Dim DecimalPlace, Count
+        ReDim Place(9) As String
+        Place(2) = " Thousand "
+        Place(3) = " Million "
+        Place(4) = " Billion "
+        Place(5) = " Trillion "
+    ' String representation of amount.
+        MyNumber = Trim(Str(MyNumber))
+    ' Position of decimal place 0 if none.
+        DecimalPlace = InStr(MyNumber, ".")
+    ' Convert Poisa and set MyNumber to dollar amount.
+        If DecimalPlace > 0 Then
+            Poisa = GetTens(Left(Mid(MyNumber, DecimalPlace + 1) & _
+            "00", 2))
+            MyNumber = Trim(Left(MyNumber, DecimalPlace - 1))
+        End If
+        Count = 1
+        Do While MyNumber <> ""
+            Temp = GetHundreds(Right(MyNumber, 3))
+            If Temp <> "" Then Taka = Temp & Place(Count) & Taka
+            If Len(MyNumber) > 3 Then
+                MyNumber = Left(MyNumber, Len(MyNumber) - 3)
+            Else
+                MyNumber = ""
+            End If
+            Count = Count + 1
+        Loop
+        Dim str_amount, str_amounts
+        Dim str_cent, str_Poisa
+        Select Case UCase(MyCurrency)
+        Case "SAR"
+            str_amount = "Riyal"
+            str_amounts = "Riyals"
+            str_cent = "Halala"
+            str_Poisa = "Halalas"
+        Case "AED"
+            str_amount = "Dirham"
+            str_amounts = "Dirhams"
+            str_cent = "Fil"
+            str_Poisa = "Fils"
+        Case "GBP"
+            str_amount = "Pound"
+            str_amounts = "Pounds"
+            str_cent = "Penny"
+            str_Poisa = "Pence"
+        Case "EUR"
+            str_amount = "Euro"
+            str_amounts = "Euros"
+            str_cent = "Cent"
+            str_Poisa = "Poisa"
+        Case "YEN"
+            str_amount = "Yen"
+            str_amounts = "Yens"
+            str_cent = "Sen"
+            str_Poisa = "Sens"
+        Case Else:
+            str_amount = "Dollar"
+            str_amounts = "Taka"
+            str_cent = "Cent"
+            str_Poisa = "Poisa"
+        End Select
+        Select Case Taka
+        Case ""
+            Taka = "No " & str_amounts
+        Case "One"
+            Taka = "One " & str_amount
+        Case Else
+            Taka = Taka & " " & str_amounts
+        End Select
+        Select Case Poisa
+        Case ""
+            Poisa = " and No " & str_Poisa
+        Case "One"
+            Poisa = " and One " & str_cent
+        Case Else
+            Poisa = " and " & Poisa & " " & str_Poisa
+        End Select
+        SpellNumberEDP = Taka & Poisa
+    End Function
+    ' Converts a number from 100-999 into text
+    Function GetHundreds(ByVal MyNumber)
+        Dim Result As String
+        If Val(MyNumber) = 0 Then Exit Function
+        MyNumber = Right("000" & MyNumber, 3)
+    ' Convert the hundreds place.
+        If Mid(MyNumber, 1, 1) <> "0" Then
+            Result = GetDigit(Mid(MyNumber, 1, 1)) & " Hundred "
+        End If
+    ' Convert the tens and ones place.
+        If Mid(MyNumber, 2, 1) <> "0" Then
+            Result = Result & GetTens(Mid(MyNumber, 2))
+        Else
+            Result = Result & GetDigit(Mid(MyNumber, 3))
+        End If
+        GetHundreds = Result
+    End Function
+    ' Converts a number from 10 to 99 into text.
+    Function GetTens(TensText)
+        Dim Result As String
+        Result = "" ' Null out the temporary function value.
+        If Val(Left(TensText, 1)) = 1 Then ' If value between 10-19...
+            Select Case Val(TensText)
+            Case 10: Result = "Ten"
+            Case 11: Result = "Eleven"
+            Case 12: Result = "Twelve"
+            Case 13: Result = "Thirteen"
+            Case 14: Result = "Fourteen"
+            Case 15: Result = "Fifteen"
+            Case 16: Result = "Sixteen"
+            Case 17: Result = "Seventeen"
+            Case 18: Result = "Eighteen"
+            Case 19: Result = "Nineteen"
+            Case Else
+            End Select
+        Else ' If value between 20-99...
+            Select Case Val(Left(TensText, 1))
+            Case 2: Result = "Twenty "
+            Case 3: Result = "Thirty "
+            Case 4: Result = "Forty "
+            Case 5: Result = "Fifty "
+            Case 6: Result = "Sixty "
+            Case 7: Result = "Seventy "
+            Case 8: Result = "Eighty "
+            Case 9: Result = "Ninety "
+            Case Else
+            End Select
+            Result = Result & GetDigit _
+            (Right(TensText, 1)) ' Retrieve ones place.
+        End If
+        GetTens = Result
+    End Function
+    ' Converts a number from 1 to 9 into text.
+    Function GetDigit(Digit)
+        Select Case Val(Digit)
+        Case 1: GetDigit = "One"
+        Case 2: GetDigit = "Two"
+        Case 3: GetDigit = "Three"
+        Case 4: GetDigit = "Four"
+        Case 5: GetDigit = "Five"
+        Case 6: GetDigit = "Six"
+        Case 7: GetDigit = "Seven"
+        Case 8: GetDigit = "Eight"
+        Case 9: GetDigit = "Nine"
+        Case Else: GetDigit = ""
+        End Select
+    End Function
+    Sub InsertMultipleColumns()
+Dim i As Integer
+Dim j As Integer
+ActiveCell.EntireColumn.Select
+On Error GoTo Last
+i = InputBox("Enter number of columns to insert", "Insert Columns")
+For j = 1 To i
+Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromRightorAbove
+Next j
+Last: Exit Sub
+End Sub
+
+
+
+Sub InsertMultipleRows()
+Dim i As Integer
+Dim j As Integer
+ActiveCell.EntireRow.Select
+On Error GoTo Last
+i = InputBox("Enter number of columns to insert", "Insert Columns")
+For j = 1 To i
+Selection.Insert Shift:=xlToDown, CopyOrigin:=xlFormatFromRightorAbove
+Next j
+Last: Exit Sub
+End Sub
+
+
+Sub OpenCalculator()
+Application.ActivateMicrosoftApp Index:=0
+End Sub
+
+
+Sub Odd_Even_Print()
+'UpdatebyExtendoffice20160901
+Dim xTotalPages As Long
+Dim xStartPage As String
+Dim xPage As Integer, xYesorNo
+Application.ScreenUpdating = False
+xStartPage = InputBox("Enter 1 for Odd, 2 for Even", "Kutools for Excel")
+If xStartPage = "" Then Exit Sub
+xTotalPages = ActiveSheet.PageSetup.Pages.Count
+xYesorNo = MsgBox("Are you sure to print?", vbYesNo, "Kutools for Excel")
+If xYesorNo = vbYes Then
+For xPage = Int(xStartPage) To xTotalPages Step 2
+ActiveSheet.PrintOut from:=xPage, To:=xPage
+Next
+Else
+Exit Sub
+End If
+Application.ScreenUpdating = True
+End Sub
+Sub SortSheetsTabName()
+Application.ScreenUpdating = False
+Dim ShCount As Integer, i As Integer, j As Integer
+ShCount = Sheets.Count
+For i = 1 To ShCount - 1
+For j = i + 1 To ShCount
+If Sheets(j).Name < Sheets(i).Name Then
+Sheets(j).Move before:=Sheets(i)
+End If
+Next j
+Next i
+Application.ScreenUpdating = True
+End Sub
+Sub HighlightBlankCells()
+Dim Dataset As Range
+Set Dataset = Selection
+Dataset.SpecialCells(xlCellTypeBlanks).Interior.Color = vbRed
+End Sub
+
+Sub check_sheet_rename()
+Dim ws As Worksheet
+Dim mysheet As String
+Dim SheetName As String
+
+mysheet = InputBox("Enter the name of the sheet that you want to rename.")
+SheetName = InputBox("Enter new name for the sheet")
+
+For Each ws In ThisWorkbook.Worksheets
+    If mysheet = ws.Name Then
+    ws.Name = SheetName
+    End If
+Next ws
+End Sub
+
+Sub CreateLinksToAllSheets()
+Dim sh As Worksheet
+Dim cell As Range
+For Each sh In ActiveWorkbook.Worksheets
+    If ActiveSheet.Name <> sh.Name Then
+        ActiveCell.Hyperlinks.Add Anchor:=Selection, Address:="", SubAddress:= _
+        "'" & sh.Name & "'" & "!A1", TextToDisplay:=sh.Name
+        ActiveCell.Offset(1, 0).Select
+    End If
+Next sh
+End Sub
+Sub CreateSheets()
+ 
+'Dimension variables and declare data types
+Dim rng As Range
+Dim cell As Range
+ 
+'Enable error handling
+On Error GoTo Errorhandling
+ 
+'Show inputbox to user and prompt for a cell range
+Set rng = Application.InputBox(Prompt:="Select cell range:", _
+Title:="Create sheets", _
+Default:=Selection.Address, Type:=8)
+ 
+'Iterate through cells in selected cell range
+For Each cell In rng
+ 
+    'Check if cell is not empty
+    If cell <> "" Then
+ 
+        'Insert worksheet and name the worksheet based on cell value
+        Sheets.Add.Name = cell
+    End If
+ 
+'Continue with next cell in cell range
+Next cell
+ 
+'Go here if an error occurs
+Errorhandling:
+ 
+'Stop macro
+End Sub
+
+
